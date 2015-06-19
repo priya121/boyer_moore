@@ -1,50 +1,49 @@
 class BoyerMoore
-    def prefix(string)
-        k = 0
-        result = [0]
-        1.upto(string.length - 1) do |q|
-            while (k > 0) && string[k] != string[q]
-                k = result[k - 1]
+
+    def maximum(first_number,second_number)
+        if first_number > second_number
+            return first_number
+        else
+            return second_number
+        end
+    end
+
+    def index_character(character,text)
+        text.split(//).each_with_index do |element,index|
+            if character == element 
+                @character_index = index
             end
-            k += 1 if (string[k] == string[q]
-                       result[q] = k
         end
-        result
+        #unless text.include? "#{character}"
+        #return - 1
+        #else
+        return @character_index
     end
+
+    def match(character,text)
+        text.split(//).each_with_index do |element,index|
+            if character == element 
+                @character = character
+                return @character
+            end
+        end
+    end
+
+    def shift(pattern,text)
+        rightmost_pattern_index =  pattern.length - 1
+        corresponding_letter = text[rightmost_pattern_index]
+        if pattern[rightmost_pattern_index] != corresponding_letter && match(corresponding_letter,pattern) != @character
+            return pattern.length
+        elsif match(corresponding_letter,pattern) == @character
+            return text.index(@character) + rightmost_pattern_index
+        end
+    end
+
+    def bad_char(pattern,text)
+        rightmost_pattern_index =  pattern.length - 1
+        corresponding_letter = text[rightmost_pattern_index]
+        while shift(pattern,text) <= (text.index(@character) - pattern.length)
+        end
+    end
+
 end
-
-    def bad_character(string)
-        result = {}
-        0.upto(string.length - 1) do |i|
-            result[string[i]] = i
-        end
-        result
-    end
-
-    def good_suffix(normal)
-        normal.size
-        result = []
-        
-        result = normal.dup.reverse
-        prefix_normal = prefix(normal)
-        prefix_reversed = prefix(reversed)
-
-        0.upto(size) do |i|
-            result[i] = normal.size - prefix_normal[normal.size - 1]
-        end
-
-        0.upto(normal.size - 1) do |i|
-            j = size - prefix_reversed[i]
-            k = i - prefix_reversed[i] + 1
-            result[j] = k if result[j] > k
-        end
-        result
-    end
-
-def find(text,pattern)
-    s = 0
-    while s <= (text.size - pattern.size)
-        j = pattern.size
-        while (j > 0) &&       
-        end
-    end
